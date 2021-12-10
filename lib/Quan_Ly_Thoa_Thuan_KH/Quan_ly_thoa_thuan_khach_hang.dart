@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -18,8 +19,11 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
     getThoaThuanChuaDuyet();
   }
 
-  List<DsChuaThoaThuan> keHoachChuaThoaThuan =  List<DsChuaThoaThuan>.empty(growable: true);
-  Widget build (BuildContext context) {
+  List<DsChuaThoaThuan> keHoachChuaThoaThuan = List<DsChuaThoaThuan>.empty(
+      growable: true);
+  List<void> dsKhachHang = List<void>.empty(growable: true);
+
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -32,13 +36,15 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
             child: Column(
               children: [
                 Expanded(
-                    child: keHoachChuaThoaThuan == null ? Center(child: Text('Chưa có thỏa thuận')) : ListView.builder(
+                    child: keHoachChuaThoaThuan == null ? Center(
+                        child: Text('Chưa có thỏa thuận')) : ListView
+                        .builder(
                         padding: EdgeInsets.all(5),
                         itemCount: keHoachChuaThoaThuan.length,
                         itemBuilder: (context, index) {
                           return Card(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0)
+                                borderRadius: BorderRadius.circular(15.0)
                             ),
                             child: Padding(
                               padding: EdgeInsets.all(5),
@@ -48,24 +54,27 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [Colors.purple, Colors.red],
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight
-                                      ),
-                                      borderRadius: BorderRadius.all(Radius.circular(24))
+                                        gradient: LinearGradient(
+                                            colors: [Colors.purple, Colors.red],
+                                            begin: Alignment.centerLeft,
+                                            end: Alignment.centerRight
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(24))
                                     ),
                                     child: Column(
-                                      children: <Widget> [
+                                      children: <Widget>[
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: <Widget> [
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .spaceBetween,
+                                          children: <Widget>[
                                             Icon(Icons.cases,
                                               color: Colors.white,
                                               size: 24,
                                             ),
                                             SizedBox(width: 8,),
-                                            Text("Kế Hoạch Tháng 1")
+                                            Text("${keHoachChuaThoaThuan
+                                                .toList()}")
                                           ],
                                         )
                                       ],
@@ -85,6 +94,7 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
       ),
     );
   }
+
   // ignore: missing_return
   Future<DsChuaThoaThuan> getThoaThuanChuaDuyet() async {
     Map<String, String> headers = {
@@ -92,11 +102,16 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
       "Accept": "application/json",
       "Authorization": globalUserData.tOKEN,
     };
-    var response = await http.get(Uri.parse("http://10.21.50.104:8086/ThoaThuanKH/Mobile_DanhSachThoaThuanKhachHang_ChuaDuyet_byIDDonVi?MA_DVIQLY=${globalUserData.mADVIQLY}"),
-      headers: headers
+    var response = await http.get(Uri.parse(
+        "http://10.21.50.104:8086/ThoaThuanKH/Mobile_DanhSachThoaThuanKhachHang_ChuaDuyet_byIDDonVi?MA_DVIQLY=${globalUserData
+            .mADVIQLY}"),
+        headers: headers
     );
     if (response.statusCode == 200) {
-      final danhSach = jsonDecode(response.body);
+      var listKHANG = jsonDecode(response.body);
+      var ds = listKHANG['ds'] as List;
+      print(ds);
+      return null;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -122,5 +137,11 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
           )
       );
     }
+  }
+  static List<DsChuaThoaThuan> parseds(String responseBodyDs) {
+    var list = json.decode(responseBodyDs) as List<dynamic>;
+    List<DsChuaThoaThuan> postDs = list.map((model) =>
+        DsChuaThoaThuan.fromJson(model)).toList();
+    return postDs;
   }
 }
