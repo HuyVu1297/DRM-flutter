@@ -19,9 +19,8 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
     getThoaThuanChuaDuyet();
   }
 
-  List<DsChuaThoaThuan> keHoachChuaThoaThuan = List<DsChuaThoaThuan>.empty(
-      growable: true);
-  List<void> dsKhachHang = List<void>.empty(growable: true);
+  List<DsChuaThoaThuan> keHoachChuaThoaThuan = List<DsChuaThoaThuan>.empty(growable: true);
+  List<Ds> dsKHANG = List<Ds>.empty(growable: true);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +95,7 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
   }
 
   // ignore: missing_return
-  Future<DsChuaThoaThuan> getThoaThuanChuaDuyet() async {
+  Future<List<DsChuaThoaThuan>> getThoaThuanChuaDuyet() async {
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",
@@ -109,9 +108,11 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
     );
     if (response.statusCode == 200) {
       var listKHANG = jsonDecode(response.body);
-      var ds = listKHANG['ds'] as List;
-      print(ds);
-      return null;
+      var list1 = listKHANG as List;
+      // DsChuaThoaThuan dsChuaThoaThuan = new DsChuaThoaThuan.fromJson(listKHANG);
+      List<DsChuaThoaThuan> dsTT = list1.map((e) => DsChuaThoaThuan.fromJson(e)).toList();
+      print(dsTT[0]);
+      return dsTT;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -137,11 +138,5 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
           )
       );
     }
-  }
-  static List<DsChuaThoaThuan> parseds(String responseBodyDs) {
-    var list = json.decode(responseBodyDs) as List<dynamic>;
-    List<DsChuaThoaThuan> postDs = list.map((model) =>
-        DsChuaThoaThuan.fromJson(model)).toList();
-    return postDs;
   }
 }

@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                         width: 2
                     )
                 ),
-                height: 250,
+                height: 260,
                 child: DrawerHeader(
                     decoration: BoxDecoration(color: Colors.white),
                     child: Center(
