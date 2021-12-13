@@ -11,20 +11,20 @@ class DSThoaThuanKHPage extends StatefulWidget {
 
 class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
 
-/*
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getThoaThuanChuaDuyet().then((datadschuaduyet) {
+    getDsThoaThuan().then((datadanhsachthoathuan) {
       setState(() {
-        keHoachChuaThoaThuan = datadschuaduyet;
+        dsThoaThuan = datadanhsachthoathuan;
       });
     });
   }
-*/
 
-  List<DsChuaThoaThuan> keHoachChuaThoaThuan = List<DsChuaThoaThuan>.empty(growable: true);
+
+  List<DsKHANGThoaThuan> dsThoaThuan = List<DsKHANGThoaThuan>.empty(growable: true);
   bool isReview = false;
   double height = 300;
   void _toggleReview() {
@@ -46,9 +46,9 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
             child: Column(
               children: [
                 Expanded(
-                    child: keHoachChuaThoaThuan == null ? Center(child: Text('Chưa có thỏa thuận')) : ListView.builder(
+                    child: dsThoaThuan == null ? Center(child: Text('Chưa có thỏa thuận')) : ListView.builder(
                         shrinkWrap: true,
-                        itemCount: keHoachChuaThoaThuan.length,
+                        itemCount: dsThoaThuan.length,
                         itemBuilder: (context, index) {
                           return Card(
                               shape: RoundedRectangleBorder(
@@ -84,14 +84,14 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
                                                     size: 45)
                                             ),
                                             SizedBox(width: 8,),
-                                            Text("${keHoachChuaThoaThuan[index].nOIDUNG}",  //Text("${keHoachChuaThoaThuan[index].dsChuThoaThuan[0].tENKHACHHANG}")
+                                            Text("${dsThoaThuan[index].nOIDUNG}",  //Text("${keHoachChuaThoaThuan[index].dsChuThoaThuan[0].tENKHACHHANG}")
                                                 style: TextStyle(
                                                   fontFamily: ".SF UI Display",
                                                   color: Colors.white,
                                                   fontSize: 19.0,
                                                   fontWeight: FontWeight.bold,)
                                             ),
-                                            SizedBox(width: 250,),
+                                            SizedBox(width: 50,),
                                             InkWell(
                                               child: Icon(
                                                   Icons.playlist_add_check_rounded,
@@ -106,7 +106,7 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
                                           child: Container(
                                             height: 280,
                                             child: ListView.builder(
-                                                itemCount: keHoachChuaThoaThuan[index].dsChuThoaThuan.length,
+                                                itemCount: dsThoaThuan[index].dsKhangThoaThuan.length,
                                                 itemBuilder: (context, kHANG) {
                                                   return Card(
                                                     shape: RoundedRectangleBorder(
@@ -125,7 +125,7 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
                                                                 SizedBox(height: 5,),
-                                                                Text('${keHoachChuaThoaThuan[index].dsChuThoaThuan[kHANG].tENKHACHHANG}',
+                                                                Text('${dsThoaThuan[index].dsKhangThoaThuan[kHANG].tENKHACHHANG}',
                                                                     style: TextStyle(
                                                                       fontFamily: ".SF UI Display",
                                                                       color: Colors.black,
@@ -133,7 +133,7 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
                                                                       fontWeight: FontWeight.bold,)
                                                                 ),
                                                                 SizedBox(height: 6,),
-                                                                Text('${keHoachChuaThoaThuan[index].dsChuThoaThuan[kHANG].mAKHANG}',
+                                                                Text('${dsThoaThuan[index].dsKhangThoaThuan[kHANG].mAKHANG}',
                                                                   style: TextStyle(
                                                                     fontFamily: ".SF UI Display",
                                                                     color: Colors.black,
@@ -141,7 +141,7 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
                                                                     fontWeight: FontWeight.w900,),
                                                                 ),
                                                                 SizedBox(height: 6,),
-                                                                Text('${keHoachChuaThoaThuan[index].dsChuThoaThuan[kHANG].dIACHI}',
+                                                                Text('${dsThoaThuan[index].dsKhangThoaThuan[kHANG].dIACHI}',
                                                                     overflow: TextOverflow.clip,
                                                                     style: TextStyle(
                                                                       fontFamily: ".SF UI Display",
@@ -152,30 +152,6 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
                                                               ],
                                                             ),
                                                           ),
-                                                          Container(
-                                                            padding: EdgeInsets.only(right: 10, left: 10),
-                                                            child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                              children: [
-                                                                InkWell(
-                                                                  child: Icon(
-                                                                      Icons.check,
-                                                                      color: Colors.green,
-                                                                      size: 35),
-                                                                  onTap: () {},
-                                                                ),
-                                                                SizedBox(height: 15,),
-                                                                InkWell(
-                                                                  child: Icon(
-                                                                      Icons.cancel,
-                                                                      color: Colors.red,
-                                                                      size: 35),
-                                                                  onTap: () {},
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          )
                                                         ],
                                                       ),
                                                     ),
@@ -199,5 +175,52 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
         ),
       ),
     );
+  }
+  //=====================================================================================================================================================================================================================================
+// Danh Sách Khách Hàng Thoa Thuan
+  // ignore: missing_return
+  Future<List<DsKHANGThoaThuan>> getDsThoaThuan() async {
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Accept": "application/json",
+      "Authorization": globalUserData.tOKEN,
+    };
+
+    var response = await http.post(Uri.parse(
+        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC3_DaDuyet_byIDDonVi"),
+        headers: headers
+    );
+    if (response.statusCode == 200) {
+      var listKHANGTT = jsonDecode(response.body);
+      var listTT = listKHANGTT as List;
+      // DsChuaThoaThuan dsChuaThoaThuan = new DsChuaThoaThuan.fromJson(listKHANG);
+      List<DsKHANGThoaThuan> dsKhangTT = listTT.map((e) => DsKHANGThoaThuan.fromJson(e)).toList();
+      dsThoaThuan = dsKhangTT;
+      return dsKhangTT;
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              behavior: SnackBarBehavior.floating,
+              duration: Duration(seconds: 2),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25)
+              ),
+              backgroundColor: Colors.deepOrangeAccent,
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Không lấy được danh sách",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: ".SF UI Display",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              )
+          )
+      );
+    }
   }
 }
