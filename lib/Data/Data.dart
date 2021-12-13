@@ -497,3 +497,87 @@ class InfoDaDuyetPBCap4 {
     return data;
   }
 }
+//=====================================================================================================================================================================================================================================
+// Chi Tiết Khách Hàng Tự Đăng Ký
+class InforKHANGtuDK {
+  int iDKH;
+  String nOIDUNG;
+  List<InfoTuDK> infoTuDK;
+
+  InforKHANGtuDK({this.iDKH, this.nOIDUNG, this.infoTuDK});
+
+  InforKHANGtuDK.fromJson(Map<String, dynamic> json) {
+    iDKH = json['IDKH'];
+    nOIDUNG = json['NOIDUNG'];
+    if (json['info'] != null) {
+      infoTuDK = new List<InfoTuDK>.empty(growable: true);
+      json['info'].forEach((v) {
+        infoTuDK.add(new InfoTuDK.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['IDKH'] = this.iDKH;
+    data['NOIDUNG'] = this.nOIDUNG;
+    if (this.infoTuDK != null) {
+      data['info'] = this.infoTuDK.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class InfoTuDK {
+  String mAKHANG;
+  String tENKHACHHANG;
+  List<ChitietTuDK> chitietTuDK;
+
+  InfoTuDK({this.mAKHANG, this.tENKHACHHANG, this.chitietTuDK});
+
+  InfoTuDK.fromJson(Map<String, dynamic> json) {
+    mAKHANG = json['MA_KHANG'];
+    tENKHACHHANG = json['TENKHACHHANG'];
+    if (json['chitiet'] != null) {
+      chitietTuDK = new List<ChitietTuDK>.empty(growable: true);
+      json['chitiet'].forEach((v) {
+        chitietTuDK.add(new ChitietTuDK.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['MA_KHANG'] = this.mAKHANG;
+    data['TENKHACHHANG'] = this.tENKHACHHANG;
+    if (this.chitietTuDK != null) {
+      data['chitiet'] = this.chitietTuDK.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class ChitietTuDK {
+  int iDKHPB;
+  double pCOSO;
+  double pTHUCTE;
+  String cHUKY;
+
+  ChitietTuDK({this.iDKHPB, this.pCOSO, this.pTHUCTE, this.cHUKY});
+
+  ChitietTuDK.fromJson(Map<String, dynamic> json) {
+    iDKHPB = json['IDKHPB'];
+    pCOSO = json['P_COSO'];
+    pTHUCTE = json['P_THUCTE'];
+    cHUKY = json['CHUKY'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['IDKHPB'] = this.iDKHPB;
+    data['P_COSO'] = this.pCOSO;
+    data['P_THUCTE'] = this.pTHUCTE;
+    data['CHUKY'] = this.cHUKY;
+    return data;
+  }
+}

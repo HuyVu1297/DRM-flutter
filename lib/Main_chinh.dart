@@ -6,6 +6,7 @@ import 'package:drappnpc/Thay_mat_khau.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'Khach_hang_dang_ky_chi_so/Khach_hang_tu_dang_ky_chi_so.dart';
 import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_3/Danh_sach_KH_Phan_Bo_Cap_3_Da_Duyet.dart';
 import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_3/Quan_ly_danh_sach_phan_bo_cap_3.dart';
 import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_4/Danh_sach_KH_Phan_Bo_Cap_4_Da_Duyet.dart';
@@ -338,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                         width: 2
                     )
                 ),
-                height: 260,
+                height: 280,
                 child: DrawerHeader(
                     decoration: BoxDecoration(color: Colors.white),
                     child: Center(
@@ -457,6 +458,18 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.w600,),),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap4ChuaDuyetGDPage()));
+                },
+              ) : Container(),
+              (globalUserData.nHOMQUYEN == 0) ? new ListTile(
+                leading: Icon(Icons.edit_road_outlined, size: 30,),
+                title: Text("Khách Hàng Tự Phân Bổ Kế Hoạch",
+                  style: TextStyle(
+                    fontFamily: ".SF UI Display",
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,),),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => KhachHangDKChiSoPage()));
                 },
               ) : Container(),
               ListTile(
