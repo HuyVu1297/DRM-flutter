@@ -106,20 +106,6 @@ class _ChiTietPhanBoCap4ChuaDuyetPageState extends State<ChiTietPhanBoCap4ChuaDu
                                                   fontWeight: FontWeight.bold,)
                                             ),
                                             SizedBox(width: 30,),
-                                            InkWell(
-                                              child: Icon(
-                                                  Icons.playlist_add_check_rounded,
-                                                  color: Colors.white,
-                                                  size: 45),
-                                              onTap: () {
-                                                // setState(() {
-                                                //   globalDsPhanBoCap4ChuaDuyetGD = new DsPhanBoCap4ChuaDuyetGD();
-                                                //   globalDsPhanBoCap4ChuaDuyetGD.iDKH = dsPBcap4ChuaDuyetGD[index].iDKH;
-                                                // });
-                                                // xacNhanThoaThuanList();
-                                                Navigator.pop(context);
-                                              },
-                                            ),
                                           ],
                                         ),
                                         Column(
@@ -179,7 +165,7 @@ class _ChiTietPhanBoCap4ChuaDuyetPageState extends State<ChiTietPhanBoCap4ChuaDu
                                                                           child: Icon(
                                                                               Icons.menu_open_outlined,
                                                                               color: Colors.redAccent,
-                                                                              size: 35),
+                                                                              size: 45),
                                                                           onTap: _toggleReviewChiTiet
                                                                         ),
                                                                       ],

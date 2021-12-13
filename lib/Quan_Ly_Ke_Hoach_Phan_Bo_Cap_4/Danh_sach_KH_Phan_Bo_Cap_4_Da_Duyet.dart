@@ -4,29 +4,28 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:drappnpc/Data/Data.dart';
 import 'dart:core';
-
 import 'Chi_tiet_khach_hang_chua_duyet_phan_bo_cap_4.dart';
 
-// ignore: non_constant_identifier_names
-String mA_KHANG_Dangky_PB = "";
-class QLKHPhanBoCap4ChuaDuyetGDPage extends StatefulWidget {
+class QLKHPhanBoCap4DaDuyetGDPage extends StatefulWidget {
   @override
-  _QLKHPhanBoCap4ChuaDuyetGDPageState createState() => _QLKHPhanBoCap4ChuaDuyetGDPageState();
+  _QLKHPhanBoCap4DaDuyetGDPageState createState() => _QLKHPhanBoCap4DaDuyetGDPageState();
 }
 
-class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetGDPage> {
+class _QLKHPhanBoCap4DaDuyetGDPageState extends State<QLKHPhanBoCap4DaDuyetGDPage> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getDanhSachPBChuaDuyetcap4().then((datadschuaduyetgdcap4) {
+    getDanhSachPBDaDuyetcap4().then((datadaduyetgdcap4) {
       setState(() {
-        dsPBcap4ChuaDuyet = datadschuaduyetgdcap4;
+        dsPBcap4DaDuyet = datadaduyetgdcap4;
       });
     });
   }
 
-  List<DsPhanBoCap4ChuaDuyet> dsPBcap4ChuaDuyet = List<DsPhanBoCap4ChuaDuyet>.empty(growable: true);
+  // ignore: non_constant_identifier_names
+  String mA_KHANG_Dangky_PB = "";
+  List<DsPhanBoCap4DaDuyet> dsPBcap4DaDuyet = List<DsPhanBoCap4DaDuyet>.empty(growable: true);
   // ignore: non_constant_identifier_names
   int iDKeHoach = 0;
   bool isReview = false;
@@ -41,7 +40,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Danh sách kế hoạch phân bổ"),
+        title: Text("Danh sách kế hoạch phân bổ đã duyệt"),
         backgroundColor: Colors.deepOrangeAccent,
       ),
       body: SafeArea(
@@ -50,9 +49,9 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
             child: Column(
               children: [
                 Expanded(
-                    child: dsPBcap4ChuaDuyet == null ? Center(child: Text('Chưa có thỏa thuận')) : ListView.builder(
+                    child: dsPBcap4DaDuyet == null ? Center(child: Text('Chưa có kế hoạch')) : ListView.builder(
                         shrinkWrap: true,
-                        itemCount: dsPBcap4ChuaDuyet.length,
+                        itemCount: dsPBcap4DaDuyet.length,
                         itemBuilder: (context, index) {
                           return Card(
                               shape: RoundedRectangleBorder(
@@ -88,7 +87,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                                     size: 45)
                                             ),
                                             SizedBox(width: 8,),
-                                            Text("${dsPBcap4ChuaDuyet[index].nOIDUNG}",  //Text("${keHoachChuaThoaThuan[index].dsChuThoaThuan[0].tENKHACHHANG}")
+                                            Text("${dsPBcap4DaDuyet[index].nOIDUNG}",  //Text("${keHoachChuaThoaThuan[index].dsChuThoaThuan[0].tENKHACHHANG}")
                                                 style: TextStyle(
                                                   fontFamily: ".SF UI Display",
                                                   color: Colors.white,
@@ -102,12 +101,6 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                                   color: Colors.white,
                                                   size: 45),
                                               onTap: () {
-                                                // setState(() {
-                                                //   globalDsPhanBoCap4ChuaDuyetGD = new DsPhanBoCap4ChuaDuyetGD();
-                                                //   globalDsPhanBoCap4ChuaDuyetGD.iDKH = dsPBcap4ChuaDuyetGD[index].iDKH;
-                                                // });
-                                                // xacNhanThoaThuanList();
-                                                Navigator.pop(context);
                                               },
                                             ),
                                           ],
@@ -117,7 +110,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                           child: Container(
                                             height: 400,
                                             child: ListView.builder(
-                                                itemCount: dsPBcap4ChuaDuyet[index].infoChuaDuyet.length,
+                                                itemCount: dsPBcap4DaDuyet[index].infoDaDuyetPBCap4.length,
                                                 itemBuilder: (context, kHANG) {
                                                   return Card(
                                                     shape: RoundedRectangleBorder(
@@ -136,7 +129,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
                                                                 SizedBox(height: 5,),
-                                                                Text('${dsPBcap4ChuaDuyet[index].infoChuaDuyet[kHANG].tENKHACHHANG}',
+                                                                Text('${dsPBcap4DaDuyet[index].infoDaDuyetPBCap4[kHANG].tENKHACHHANG}',
                                                                     style: TextStyle(
                                                                       fontFamily: ".SF UI Display",
                                                                       color: Colors.black,
@@ -144,7 +137,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                                                       fontWeight: FontWeight.bold,)
                                                                 ),
                                                                 SizedBox(height: 6,),
-                                                                Text('${dsPBcap4ChuaDuyet[index].infoChuaDuyet[kHANG].mAKHANG}',
+                                                                Text('${dsPBcap4DaDuyet[index].infoDaDuyetPBCap4[kHANG].mAKHANG}',
                                                                   style: TextStyle(
                                                                     fontFamily: ".SF UI Display",
                                                                     color: Colors.black,
@@ -152,7 +145,16 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                                                     fontWeight: FontWeight.w900,),
                                                                 ),
                                                                 SizedBox(height: 6,),
-                                                                Text('${dsPBcap4ChuaDuyet[index].infoChuaDuyet[kHANG].dIACHI}',
+                                                                Text('${dsPBcap4DaDuyet[index].infoDaDuyetPBCap4[kHANG].dIACHI}',
+                                                                    overflow: TextOverflow.clip,
+                                                                    style: TextStyle(
+                                                                      fontFamily: ".SF UI Display",
+                                                                      color: Colors.black,
+                                                                      fontSize: 16.0,
+                                                                      fontWeight: FontWeight.w400,)
+                                                                ),
+                                                                SizedBox(height: 6,),
+                                                                Text('${dsPBcap4DaDuyet[index].infoDaDuyetPBCap4[kHANG].trangThaiDuyet}',
                                                                     overflow: TextOverflow.clip,
                                                                     style: TextStyle(
                                                                       fontFamily: ".SF UI Display",
@@ -163,32 +165,32 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
                                                               ],
                                                             ),
                                                           ),
-                                                          Container(
-                                                            padding: EdgeInsets.only(right: 10, left: 10),
-                                                            child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                              children: [
-                                                                InkWell(
-                                                                  child: Icon(
-                                                                      Icons.menu_open_outlined,
-                                                                      color: Colors.redAccent,
-                                                                      size: 35),
-                                                                  onTap: () {
-                                                                    setState(() {
-                                                                      globalDsPhanBoCap4ChuaDuyet = new DsPhanBoCap4ChuaDuyet();
-                                                                      iDKeHoach = dsPBcap4ChuaDuyet[index].iDKH;
-                                                                      mA_KHANG_Dangky_PB = dsPBcap4ChuaDuyet[index].infoChuaDuyet[kHANG].mAKHANG;
-                                                                      globalDsPhanBoCap4ChuaDuyet.iDKH = iDKeHoach;
-                                                                    });
-                                                                    print(globalDsPhanBoCap4ChuaDuyet.iDKH);
-                                                                    print(mA_KHANG_Dangky_PB);
-                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ChiTietPhanBoCap4ChuaDuyetPage()));
-                                                                  },
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          )
+                                                          // Container(
+                                                          //   padding: EdgeInsets.only(right: 10, left: 10),
+                                                          //   child: Column(
+                                                          //     mainAxisAlignment: MainAxisAlignment.center,
+                                                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                                                          //     children: [
+                                                          //       InkWell(
+                                                          //         child: Icon(
+                                                          //             Icons.menu_open_outlined,
+                                                          //             color: Colors.redAccent,
+                                                          //             size: 35),
+                                                          //         onTap: () {
+                                                          //           setState(() {
+                                                          //             globalDsPhanBoCap4ChuaDuyet = new DsPhanBoCap4ChuaDuyet();
+                                                          //             iDKeHoach = dsPBcap4ChuaDuyet[index].iDKH;
+                                                          //             mA_KHANG_Dangky_PB = dsPBcap4ChuaDuyet[index].infoChuaDuyet[kHANG].mAKHANG;
+                                                          //             globalDsPhanBoCap4ChuaDuyet.iDKH = iDKeHoach;
+                                                          //           });
+                                                          //           print(globalDsPhanBoCap4ChuaDuyet.iDKH);
+                                                          //           print(mA_KHANG_Dangky_PB);
+                                                          //           Navigator.push(context, MaterialPageRoute(builder: (context) => ChiTietPhanBoCap4ChuaDuyetPage()));
+                                                          //         },
+                                                          //       ),
+                                                          //     ],
+                                                          //   ),
+                                                          // )
                                                         ],
                                                       ),
                                                     ),
@@ -216,7 +218,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
 //=====================================================================================================================================================================================================================================
 // Danh Sách Khách Hàng Chưa Duyệt
   // ignore: missing_return
-  Future<List<DsPhanBoCap4ChuaDuyet>> getDanhSachPBChuaDuyetcap4() async {
+  Future<List<DsPhanBoCap4DaDuyet>> getDanhSachPBDaDuyetcap4() async {
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",
@@ -227,7 +229,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
       "MA_DVQLY": "${globalUserData.mADVIQLY}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC4_ChuaDuyet_byIDDonVi"),
+        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC4_DaDuyet_byIDDonVi"),
         body: danhsachphanbo,
         headers: headers
     );
@@ -235,9 +237,9 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
       var listpbcap4 = jsonDecode(response.body);
       var listPBCap4 = listpbcap4 as List;
       // DsChuaThoaThuan dsChuaThoaThuan = new DsChuaThoaThuan.fromJson(listKHANG);
-      List<DsPhanBoCap4ChuaDuyet> dsTT = listPBCap4.map((e) => DsPhanBoCap4ChuaDuyet.fromJson(e)).toList();
-      dsPBcap4ChuaDuyet = dsTT;
-      return dsTT;
+      List<DsPhanBoCap4DaDuyet> dsPB = listPBCap4.map((e) => DsPhanBoCap4DaDuyet.fromJson(e)).toList();
+      dsPBcap4DaDuyet = dsPB;
+      return dsPB;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

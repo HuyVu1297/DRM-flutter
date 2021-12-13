@@ -6,8 +6,9 @@ import 'package:drappnpc/Thay_mat_khau.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_3/Danh_sach_KH_Phan_Bo_Cap_3.dart';
+import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_3/Danh_sach_KH_Phan_Bo_Cap_3_Da_Duyet.dart';
 import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_3/Quan_ly_danh_sach_phan_bo_cap_3.dart';
+import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_4/Danh_sach_KH_Phan_Bo_Cap_4_Da_Duyet.dart';
 import 'Quan_Ly_Ke_Hoach_Phan_Bo_Cap_4/Quan_ly_ke_hoach_phan_bo_cap_4_gd.dart';
 import 'Quan_Ly_Thoa_Thuan_KH/Quan_ly_thoa_thuan_khach_hang.dart';
 
@@ -125,29 +126,8 @@ class _HomePageState extends State<HomePage> {
                                       if (globalUserData.nHOMQUYEN == 3 || globalUserData.nHOMQUYEN == 2) {
                                         Navigator.push(context, MaterialPageRoute(builder: (context) => DanhSachKHPhanBoDaDuyetPage()),
                                         );
-                                      } else if (globalUserData.nHOMQUYEN == 1) {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(
-                                                behavior: SnackBarBehavior.floating,
-                                                duration: Duration(seconds: 3),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(25)
-                                                ),
-                                                backgroundColor: Colors.deepOrangeAccent,
-                                                content: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Text("Tài khoản của bạn không có quyền truy cập",
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontFamily: ".SF UI Display",
-                                                        fontSize: 16.0,
-                                                        fontWeight: FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                            )
+                                      } else if (globalUserData.nHOMQUYEN == 1 || globalUserData.nHOMQUYEN == 16) {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap4DaDuyetGDPage()),
                                         );
                                       }
                                     },

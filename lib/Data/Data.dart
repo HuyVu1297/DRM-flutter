@@ -442,3 +442,58 @@ class ChitietKHANGChuaDuyet {
     return data;
   }
 }
+//=====================================================================================================================================================================================================================================
+// Danh Sách Khách Hàng Đã Duyệt Phân Bổ Cấp 4
+class DsPhanBoCap4DaDuyet {
+  String nOIDUNG;
+  int iDKH;
+  List<InfoDaDuyetPBCap4> infoDaDuyetPBCap4;
+
+  DsPhanBoCap4DaDuyet({this.nOIDUNG, this.iDKH, this.infoDaDuyetPBCap4});
+
+  DsPhanBoCap4DaDuyet.fromJson(Map<String, dynamic> json) {
+    nOIDUNG = json['NOIDUNG'];
+    iDKH = json['IDKH'];
+    if (json['info'] != null) {
+      infoDaDuyetPBCap4 = new List<InfoDaDuyetPBCap4>.empty(growable: true);
+      json['info'].forEach((v) {
+        infoDaDuyetPBCap4.add(new InfoDaDuyetPBCap4.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['NOIDUNG'] = this.nOIDUNG;
+    data['IDKH'] = this.iDKH;
+    if (this.infoDaDuyetPBCap4 != null) {
+      data['info'] = this.infoDaDuyetPBCap4.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class InfoDaDuyetPBCap4 {
+  String mAKHANG;
+  String tENKHACHHANG;
+  String dIACHI;
+  String trangThaiDuyet;
+
+  InfoDaDuyetPBCap4({this.mAKHANG, this.tENKHACHHANG, this.dIACHI, this.trangThaiDuyet});
+
+  InfoDaDuyetPBCap4.fromJson(Map<String, dynamic> json) {
+    mAKHANG = json['MA_KHANG'];
+    tENKHACHHANG = json['TENKHACHHANG'];
+    dIACHI = json['DIACHI'];
+    trangThaiDuyet = json['TrangThaiDuyet'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['MA_KHANG'] = this.mAKHANG;
+    data['TENKHACHHANG'] = this.tENKHACHHANG;
+    data['DIACHI'] = this.dIACHI;
+    data['TrangThaiDuyet'] = this.trangThaiDuyet;
+    return data;
+  }
+}
