@@ -514,7 +514,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: Text("Khách Hàng Gì Gì Đó"),
+        title: Text("Hệ Thống Quản Lý Kế Hoạch Sử Dụng Điện"),
         backgroundColor: Colors.deepOrangeAccent,
       ),
       body: Container(
