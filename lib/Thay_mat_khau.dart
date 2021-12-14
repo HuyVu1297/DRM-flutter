@@ -17,6 +17,9 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
   var passwordOld = TextEditingController();
   var passwordConfirm = TextEditingController();
   var passwordNew = TextEditingController();
+  var inputNewName = TextEditingController();
+  var inputNewPhone = TextEditingController();
+  var inputNewEmail = TextEditingController();
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -81,6 +84,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
                                 fontWeight: FontWeight.w300,
                               ),
                               cursorColor: Colors.deepOrangeAccent,
+                              controller: inputNewName,
                               decoration: InputDecoration(
                                   hintText: 'Nhập tên công ty mới',
                                   contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 0),
@@ -112,6 +116,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
                                 fontWeight: FontWeight.w300,
                               ),
                               cursorColor: Colors.deepOrangeAccent,
+                              controller: inputNewPhone,
                               decoration: InputDecoration(
                                   hintText: 'Nhập số điện thoại công ty mới',
                                   contentPadding: EdgeInsets.fromLTRB(5, 0, 10, 0),
@@ -143,6 +148,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
                                 fontWeight: FontWeight.w300,
                               ),
                               cursorColor: Colors.deepOrangeAccent,
+                              controller: inputNewEmail,
                               decoration: InputDecoration(
                                   hintText: 'Nhập địa chỉ Email mới',
                                   contentPadding: EdgeInsets.fromLTRB(5, 0, 10, 0),
@@ -179,7 +185,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
                                       content: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text("Thông tin người dùng đã được thay đổi",
+                                          Text("Thông tin người dùng đã được cập nhật",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: ".SF UI Display",
@@ -459,6 +465,112 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Không được bỏ trống mật khẩu",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: ".SF UI Display",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              )
+          )
+      );
+    }
+  }
+//=====================================================================================================================================================================================================================================
+// API ĐỔI MẬT KHẨU
+  // ignore: missing_return
+  Future<void> changeInfor() async {
+    if (inputNewName.text.isNotEmpty || inputNewPhone.text.isNotEmpty || inputNewPhone.text.isNotEmpty) {
+      Map<String, String> headers = {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+        "Authorization": globalUserData.tOKEN,
+      };
+      final detailPass = jsonEncode({
+        "USERNAME": "${globalUserData.uSERNAME}",
+        "Loai": customerAcc,
+        "HoTen": inputNewName.text,
+        "Email": inputNewEmail.text,
+        "SDT": inputNewPhone.text
+      });
+      var response = await http.post(
+        Uri.parse("http://10.21.50.104:8086/User/Mobile_Update_User"),
+        body: detailPass,
+        headers: headers,
+      );
+      if (response.statusCode == 200) {
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                behavior: SnackBarBehavior.floating,
+                duration: Duration(seconds: 3),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)
+                ),
+                backgroundColor: Colors.deepOrangeAccent,
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.vpn_key_rounded, color: Colors.white,),
+                    SizedBox(width: 10),
+                    Text("Đăng nhập lại với mật khẩu mới",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: ".SF UI Display",
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                )
+            )
+        );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  duration: Duration(seconds: 3),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25)
+                  ),
+                  backgroundColor: Colors.deepOrangeAccent,
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.vpn_key_rounded, color: Colors.white,),
+                      SizedBox(width: 10),
+                      Text("Không đổi được mật khẩu",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: ".SF UI Display",
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  )
+              )
+          );
+        }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              behavior: SnackBarBehavior.floating,
+              duration: Duration(seconds: 3),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25)
+              ),
+              backgroundColor: Colors.deepOrangeAccent,
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.vpn_key_rounded, color: Colors.white,),
+                  SizedBox(width: 10),
+                  Text("Chưa nhập thông tin để thay đổi",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: ".SF UI Display",
