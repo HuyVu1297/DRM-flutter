@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'dart:core';
+
+import '../Data_and_config/Config.dart';
 
 class QLKHPhanBoCap3ChuaDuyetPage extends StatefulWidget {
   @override
@@ -275,7 +276,7 @@ class _QLKHPhanBoCap3ChuaDuyetPageState extends State<QLKHPhanBoCap3ChuaDuyetPag
       "MA_DVQLY": "${globalUserData.mADVIQLY}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC3_ChuaDuyet_byIDDonVi"),
+        "$API_GET_DSACH_KHANG_HANG_CHUA_DUYET_PB_CAP3"),
         headers: headers,
         body: danhsachphanbo
     );
@@ -326,7 +327,7 @@ class _QLKHPhanBoCap3ChuaDuyetPageState extends State<QLKHPhanBoCap3ChuaDuyetPag
       "IDPB_DL": "$idPB_Cap3"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DuyetPhanBoC3_byIDPB_DL"),
+        "$API_XAC_NHAN_1_KHANG_PB_CAP3"),
         headers: headers,
         body: xacnhanPB
     );
@@ -397,7 +398,7 @@ class _QLKHPhanBoCap3ChuaDuyetPageState extends State<QLKHPhanBoCap3ChuaDuyetPag
       "LyDo": "$lydo"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/ThoaThuanKH/Mobile_DuyetKHangThoaThuan_KhongXacNhan"),
+        "$API_KO_XAC_NHAN_1_KHANG_PB_CAP3"),
         headers: headers,
         body: koxacnhan
     );

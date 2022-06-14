@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:core';
 import 'package:drappnpc/Main_chinh.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-
-import 'Data/Data.dart';
+import 'Data_and_config/Config.dart';
+import 'Data_and_config/Data.dart';
 
 bool customerAcc = false;
 class LoginPage extends StatefulWidget {
@@ -247,7 +246,7 @@ class _MyLoginPageState extends State<LoginPage> {
         'Loai': customerAcc,
       });
       var response = await http.post(
-        Uri.parse("http://10.21.50.104:8086/Login/Login"),
+        Uri.parse("$API_LOGIN"),
         body: user,
         headers: headers,
       );
@@ -313,7 +312,7 @@ class _MyLoginPageState extends State<LoginPage> {
     }
   }
 //===========================================================================================================================================================================================================================
-  hideStatusBar() => SystemChrome.setEnabledSystemUIOverlays([]);
+  hideStatusBar() => SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   void _togglePasswordView() {
     setState(() {
       isHiddenPassword = !isHiddenPassword;

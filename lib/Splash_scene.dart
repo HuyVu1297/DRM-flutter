@@ -1,6 +1,5 @@
 import 'dart:core';
 import 'package:drappnpc/Login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {

@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'dart:core';
-import 'Chi_tiet_khach_hang_chua_duyet_phan_bo_cap_4.dart';
+
+import '../Data_and_config/Config.dart';
 
 class QLKHPhanBoCap4DaDuyetGDPage extends StatefulWidget {
   @override
@@ -216,7 +216,7 @@ class _QLKHPhanBoCap4DaDuyetGDPageState extends State<QLKHPhanBoCap4DaDuyetGDPag
     );
   }
 //=====================================================================================================================================================================================================================================
-// Danh Sách Khách Hàng Chưa Duyệt
+// Danh Sách Khách Hàng Đã Duyệt
   // ignore: missing_return
   Future<List<DsPhanBoCap4DaDuyet>> getDanhSachPBDaDuyetcap4() async {
     Map<String, String> headers = {
@@ -229,7 +229,7 @@ class _QLKHPhanBoCap4DaDuyetGDPageState extends State<QLKHPhanBoCap4DaDuyetGDPag
       "MA_DVQLY": "${globalUserData.mADVIQLY}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC4_DaDuyet_byIDDonVi"),
+        "$API_GET_DSACH_KHACH_HANG_DA_DUYET_PHAN_BO_CAP4"),
         body: danhsachphanbo,
         headers: headers
     );

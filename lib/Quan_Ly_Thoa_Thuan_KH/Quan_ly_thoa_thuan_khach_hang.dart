@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:drappnpc/Data_and_config/Config.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'dart:core';
 
 class QLThoaThuanKHPage extends StatefulWidget {
@@ -229,7 +229,7 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
       "Authorization": globalUserData.tOKEN,
     };
     var response = await http.get(Uri.parse(
-        "http://10.21.50.104:8086/ThoaThuanKH/Mobile_DanhSachThoaThuanKhachHang_ChuaDuyet_byIDDonVi?MA_DVIQLY=${globalUserData
+        "$API_GET_DSACH_KHACH_HANG_CHUA_DUYET?MA_DVIQLY=${globalUserData
             .mADVIQLY}"),
         headers: headers
     );
@@ -279,7 +279,7 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
       "IDDANGKY": "$iDKHANG_Dangky"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/ThoaThuanKH/Mobile_DuyetKHangThoaThuan_XacNhan"),
+        "$API_XAC_NHAN_1_KHANG"),
         headers: headers,
         body: xacnhan
     );
@@ -347,7 +347,7 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
       "IDDANGKY": "$iDKHANG_Dangky"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/ThoaThuanKH/Mobile_DuyetKHangThoaThuan_KhongXacNhan"),
+        "$API_KO_XAC_NHAN_1_KHANG"),
         headers: headers,
         body: koxacnhan
     );
@@ -416,7 +416,7 @@ class _QLThoaThuanKHPageState extends State<QLThoaThuanKHPage> {
       "IDKH": "${globalDsChuaThoaThuan.iDKH}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/ThoaThuanKH/Mobile_DuyetKHangThoaThuan_XacNhan"),
+        "$API_XAC_NHAN_LIST_KHANG"),
         headers: headers,
         body: xacnhanlist
     );

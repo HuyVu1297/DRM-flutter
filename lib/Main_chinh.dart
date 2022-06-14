@@ -1,9 +1,8 @@
 import 'dart:core';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'package:drappnpc/Login.dart';
 import 'package:drappnpc/Quan_Ly_Thoa_Thuan_KH/Danh_sach_thoa_thuan_KH.dart';
 import 'package:drappnpc/Thay_mat_khau.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Khach_hang_dang_ky_chi_so/Khach_hang_tu_dang_ky_chi_so.dart';

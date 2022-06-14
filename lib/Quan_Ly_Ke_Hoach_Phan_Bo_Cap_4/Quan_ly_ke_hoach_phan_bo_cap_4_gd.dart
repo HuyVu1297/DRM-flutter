@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'dart:core';
-
+import '../Data_and_config/Config.dart';
 import 'Chi_tiet_khach_hang_chua_duyet_phan_bo_cap_4.dart';
 
 // ignore: non_constant_identifier_names
@@ -227,7 +226,7 @@ class _QLKHPhanBoCap4ChuaDuyetGDPageState extends State<QLKHPhanBoCap4ChuaDuyetG
       "MA_DVQLY": "${globalUserData.mADVIQLY}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC4_ChuaDuyet_byIDDonVi"),
+        "$API_GET_DSACH_KHACH_HANG_CHUA_DUYET_PHAN_BO_CAP4_GD"),
         body: danhsachphanbo,
         headers: headers
     );

@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:drappnpc/Data_and_config/Config.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:core';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 
 class DSThoaThuanKHPage extends StatefulWidget {
   @override
@@ -187,7 +188,7 @@ class _DSThoaThuanKHPageState extends State<DSThoaThuanKHPage> {
     };
 
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DanhSachPBC3_DaDuyet_byIDDonVi"),
+        "$API_GET_DSACH_KHACH_HANG_THOA_THUAN"),
         headers: headers
     );
     if (response.statusCode == 200) {

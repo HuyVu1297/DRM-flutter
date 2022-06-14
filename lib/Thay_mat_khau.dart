@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:core';
 import 'package:drappnpc/Login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
+
+import 'Data_and_config/Config.dart';
 
 class PasswordChangePage extends StatefulWidget {
   @override
@@ -365,7 +366,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
           "Loai": customerAcc,
         });
         var response = await http.post(
-          Uri.parse("http://10.21.50.104:8086/User/Mobile_Update_User"),
+          Uri.parse("$API_CHANGE_PASSWORD"),
           body: detailPass,
           headers: headers,
         );
@@ -479,7 +480,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
     }
   }
 //=====================================================================================================================================================================================================================================
-// API ĐỔI MẬT KHẨU
+// API ĐỔI THÔNG TIN TÀI KHOẢN
   // ignore: missing_return
   Future<void> changeInfor() async {
     if (inputNewName.text.isNotEmpty || inputNewPhone.text.isNotEmpty || inputNewPhone.text.isNotEmpty) {
@@ -496,7 +497,7 @@ class _PasswordChangePageState extends State<PasswordChangePage> {
         "SDT": inputNewPhone.text
       });
       var response = await http.post(
-        Uri.parse("http://10.21.50.104:8086/User/Mobile_Update_User"),
+        Uri.parse("$API_CHANGE_INFOR_USER"),
         body: detailPass,
         headers: headers,
       );

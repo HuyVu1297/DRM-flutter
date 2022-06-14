@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'dart:core';
+
+import '../Data_and_config/Config.dart';
 
 class KhachHangDKChiSoPage extends StatefulWidget {
   @override
@@ -327,7 +328,7 @@ class _KhachHangDKChiSoPageState extends State<KhachHangDKChiSoPage> {
       "MA_KHANG": "${globalUserData.uSERNAME}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/DangKyCS/Mobile_ThongTinPhanBoKHang_ByMA_KHANG"),
+        "$API_GET_DETAIL_KHANG_TU_DANG_KY_SO"),
         headers: headers,
         body: xacnhan
     );
@@ -376,7 +377,7 @@ class _KhachHangDKChiSoPageState extends State<KhachHangDKChiSoPage> {
       "P_KHANG": "$pKHANG"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DuyetPhanBoC4_byIDKHPB"),
+        "$API_KHANG_TU_DANG_KY_P_KHANG"),
         body: xacnhan,
         headers: headers
     );

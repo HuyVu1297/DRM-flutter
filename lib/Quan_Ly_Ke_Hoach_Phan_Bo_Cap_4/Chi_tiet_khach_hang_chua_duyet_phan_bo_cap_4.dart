@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:drappnpc/Data/Data.dart';
+import 'package:drappnpc/Data_and_config/Data.dart';
 import 'dart:core';
 
+import '../Data_and_config/Config.dart';
 import 'Quan_ly_ke_hoach_phan_bo_cap_4_gd.dart';
 
 class ChiTietPhanBoCap4ChuaDuyetPage extends StatefulWidget {
@@ -344,7 +344,7 @@ class _ChiTietPhanBoCap4ChuaDuyetPageState extends State<ChiTietPhanBoCap4ChuaDu
       "IDKH": "${globalDsPhanBoCap4ChuaDuyet.iDKH}"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_ThongTinPhanBoKHang_ByIdKH_ChuaDuyet"),
+        "$API_GET_DETAIL_KHACH_HANG_CHUA_DUYET_PB_CAP4"),
         headers: headers,
         body: xacnhan
     );
@@ -394,7 +394,7 @@ class _ChiTietPhanBoCap4ChuaDuyetPageState extends State<ChiTietPhanBoCap4ChuaDu
       "IDKHPB": "$iDKHPB"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_DuyetPhanBoC4_byIDKHPB"),
+        "$API_XAC_NHAN_1_KHANG_PB_CAP4"),
         body: xacnhan,
         headers: headers
     );
@@ -465,7 +465,7 @@ class _ChiTietPhanBoCap4ChuaDuyetPageState extends State<ChiTietPhanBoCap4ChuaDu
       "LyDo": "$lydo"
     });
     var response = await http.post(Uri.parse(
-        "http://10.21.50.104:8086/PhanBo/Mobile_KhongDuyetPhanBoC4_byIDKHPB"),
+        "$API_KO_XAC_NHAN_1_KHANG_PB_CAP4"),
         headers: headers,
         body: koxacnhan
     );
