@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:ui';
 import 'package:drappnpc/Data_and_config/Data.dart';
 import 'package:drappnpc/Login.dart';
 import 'package:drappnpc/Quan_Ly_Thoa_Thuan_KH/Danh_sach_thoa_thuan_KH.dart';
@@ -18,7 +19,8 @@ class HomePage extends StatefulWidget {
 }
 class _HomePageState extends State<HomePage> {
   // ignore: non_constant_identifier_names
-  final support_number = 19006769;
+  final supportNumber = 19006769;
+  final supportTechNumber = 0988791188;
   int _selectedIndex = 0;
 
 
@@ -29,127 +31,376 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget build(BuildContext context){
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     List<Widget> _widgetOptions = <Widget>[
       SafeArea(
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Center(
-              child: Container(
-                height: 600,
-                width: 400,
-                margin: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25.0),
-                    border: Border.all(
-                        color: Colors.grey,
-                        width: 2
-                    )
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 15,),
-                    Text("Trang chủ",
-                        style: TextStyle(
-                          fontFamily: ".SF UI Display",
-                          color: Colors.black,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        )
-                    ),
-                    SizedBox(height: 15,),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25.0),
-                          border: Border.all(
-                              color: Colors.blue,
-                              width: 2
-                          )
-                      ),
-                      height: 170,
-                      width: 360,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 15,),
-                          Center(
-                            child: Text("Các chức năng chính",
-                                style: TextStyle(
-                                  fontFamily: ".SF UI Display",
-                                  color: Colors.black,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 20,),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+          drawer: Drawer(
+            child: Container(
+              color: Colors.white,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    margin: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 0),
+                    height: 280,
+                    child: DrawerHeader(
+                        decoration: BoxDecoration(color: Colors.white),
+                        child: Center(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Column(
-                                  children: [
-                                    InkWell(
-                                      child: Icon(
-                                          Icons.list_alt_outlined,
-                                          color: Colors.deepOrangeAccent,
-                                          size: 60),
-                                      onTap: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => DSThoaThuanKHPage()),
-                                        );
-                                      },
-                                    ),
-                                    SizedBox(height: 5,),
-                                    Text("Danh Sách Thỏa Thuận",
-                                        style: TextStyle(
-                                          fontFamily: ".SF UI Display",
-                                          color: Colors.black,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w500,
-                                        )
+                              SizedBox(height: 5),
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    image: DecorationImage(
+                                        image: AssetImage("assets/images/profile.png"),
+                                        fit: BoxFit.cover
                                     )
-                                  ]
+                                ),
                               ),
-                              SizedBox(width: 30,),
-                              Column(
+                              SizedBox(height: 10,),
+                              Text("${globalUserData.hOTEN}",
+                                  style: TextStyle(
+                                    fontFamily: ".SF UI Display",
+                                    color: Colors.black,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w600,)),
+                              SizedBox(height: 5),
+                              Text("",
+                                  style: TextStyle(
+                                    fontFamily: ".SF UI Display",
+                                    color: Colors.black,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w400,)),
+                              SizedBox(height: 15,),
+                              Wrap(
                                 children: [
-                                  InkWell(
-                                    child: Icon(
-                                        Icons.assignment_rounded,
-                                        color: Colors.deepOrangeAccent,
-                                        size: 60),
-                                    onTap: () {
-                                      if (globalUserData.nHOMQUYEN == 3 || globalUserData.nHOMQUYEN == 2) {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => DanhSachKHPhanBoDaDuyetPage()),
-                                        );
-                                      } else if (globalUserData.nHOMQUYEN == 1 || globalUserData.nHOMQUYEN == 16) {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap4DaDuyetGDPage()),
-                                        );
-                                      }
-                                    },
-                                  ),
-                                  SizedBox(height: 5,),
-                                  Text("Danh Sách Phân Bổ Đã Duyệt",
-                                      overflow: TextOverflow.clip,
-                                      style: TextStyle(
-                                        fontFamily: ".SF UI Display",
-                                        color: Colors.black,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w500,
-                                      )
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Wrap(
+                                        children: [
+                                          Icon(Icons.location_on, size: 18, color: Colors.redAccent,),
+                                          SizedBox(width: 10,),
+                                          Text('${globalUserData.dIACHI}',
+                                              style: TextStyle(
+                                                fontFamily: ".SF UI Display",
+                                                color: Colors.black,
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w500,))
+                                        ],),
+                                      SizedBox(height: 5,),
+                                      Wrap(
+                                        children: [
+                                          Icon(Icons.phone, size: 18, color: Colors.redAccent,),
+                                          SizedBox(width: 10,),
+                                          Text('${globalUserData.sDT}',
+                                              style: TextStyle(
+                                                fontFamily: ".SF UI Display",
+                                                color: Colors.black,
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w500,))
+                                        ],),
+                                      SizedBox(height: 5,),
+                                      Wrap(
+                                        children: [
+                                          Icon(Icons.mail, size: 18, color: Colors.redAccent,),
+                                          SizedBox(width: 10,),
+                                          Text('${globalUserData.eMAIL}',
+                                              style: TextStyle(
+                                                fontFamily: ".SF UI Display",
+                                                color: Colors.black,
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w500,))
+                                        ],),
+                                    ],
                                   )
                                 ],
                               ),
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        )
                     ),
-                  ],
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                    indent: 20.0,
+                    endIndent: 20.0,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  SizedBox(height: 5),
+                  customerAcc ? Container() : new ListTile(
+                    leading: Icon(Icons.list_alt_rounded, size: 30, color: Colors.deepOrangeAccent,),
+                    title: Text("Quản Lý Thỏa Thuận Khách Hàng",
+                      style: TextStyle(
+                        fontFamily: ".SF UI Display",
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,),),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => QLThoaThuanKHPage()));
+                    },
+                  ),
+                  (globalUserData.nHOMQUYEN == 2 || globalUserData.nHOMQUYEN == 3) ? new ListTile(
+                    leading: Icon(Icons.list_alt_rounded, size: 30, color: Colors.deepOrangeAccent),
+                    title: Text("Quản Lý Kế Hoạch Phân Bổ",
+                      style: TextStyle(
+                        fontFamily: ".SF UI Display",
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,),),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap3ChuaDuyetPage()));
+                    },
+                  ) : Container(),
+                  (globalUserData.nHOMQUYEN == 1 || globalUserData.nHOMQUYEN == 16) ? new ListTile(
+                    leading: Icon(Icons.list_alt_rounded, size: 30, color: Colors.deepOrangeAccent),
+                    title: Text("Quản Lý Kế Hoạch Phân Bổ Cấp 4",
+                      style: TextStyle(
+                        fontFamily: ".SF UI Display",
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,),),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap4ChuaDuyetGDPage()));
+                    },
+                  ) : Container(),
+                  (globalUserData.nHOMQUYEN == 0) ? new ListTile(
+                    leading: Icon(Icons.edit_road_outlined, size: 30, color: Colors.deepOrangeAccent),
+                    title: Text("Khách Hàng Tự Phân Bổ Kế Hoạch",
+                      style: TextStyle(
+                        fontFamily: ".SF UI Display",
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,),),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => KhachHangDKChiSoPage()));
+                    },
+                  ) : Container(),
+                  ListTile(
+                      leading: Icon(Icons.support_agent, size: 30, color: Colors.deepOrangeAccent),
+                      title: Text("Tổng Đài Hỗ Trợ",
+                        style: TextStyle(
+                          fontFamily: ".SF UI Display",
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,),),
+                      onTap: () async {
+                        launch('tel://$supportNumber');
+                        Navigator.pop(context);
+                      }
+                  ),
+                  ListTile(
+                      leading: Icon(Icons.contact_support_rounded, size: 30, color: Colors.deepOrangeAccent),
+                      title: Text("Hỗ Trợ Kỹ Thuật",
+                        style: TextStyle(
+                          fontFamily: ".SF UI Display",
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,),),
+                      onTap: () async {
+                        launch('tel://$supportTechNumber');
+                        Navigator.pop(context);
+                      }
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.email, size: 30, color: Colors.deepOrangeAccent),
+                    title: Text("Email Hỗ Trợ: webmaster@npc.com.vn",
+                      style: TextStyle(
+                        fontFamily: ".SF UI Display",
+                        color: Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600,),),
+                  ),
+                  ListTile(
+                      leading: Icon(Icons.edit, size: 30, color: Colors.deepOrangeAccent),
+                      title: Text("Đổi Thông Tin Tài Khoản",
+                        style: TextStyle(
+                          fontFamily: ".SF UI Display",
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,),),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PasswordChangePage()));
+                      }
+                  ),
+                  SizedBox(height: 5),
+                  Divider(
+                    thickness: 1.0,
+                    indent: 20.0,
+                    endIndent: 20.0,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  SizedBox(height: 5),
+                  ListTile(
+                      leading: Icon(Icons.logout, size: 30, color: Colors.deepOrangeAccent),
+                      title: Text("Đăng Xuất",
+                        style: TextStyle(
+                          fontFamily: ".SF UI Display",
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,),),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                      }
+                  ),
+                  SizedBox(height: 5),
+                  ListTile(
+                      leading: Icon(Icons.copyright, size: 30, color: Colors.deepOrangeAccent),
+                      title: Text("Bản quyền thuộc Công ty Công nghệ thông tin Điện lực miền Bắc",
+                        style: TextStyle(
+                          fontFamily: ".SF UI Display",
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,),),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          drawerEdgeDragWidth: MediaQuery.of(context).size.width,
+          backgroundColor: Colors.deepOrangeAccent,
+          body: Container(
+            height: height,
+            width: width,
+            child: SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  height: height/1.09,
+                  width: width/0.9,
+                  margin: EdgeInsets.only(top: 4, left: 2, right: 2, bottom: 2),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: ExactAssetImage("assets/images/background_main.png"),
+                        fit: BoxFit.cover
+                      ),
+                      borderRadius: BorderRadius.circular(25.0),
+                      border: Border.all(
+                          color: Colors.deepOrangeAccent,
+                          width: 2
+                      )
+                  ),
+                  child: BackdropFilter(
+                    filter: new ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: height/25,),
+                        CircleAvatar(
+                          radius: 60,
+                          backgroundImage: AssetImage('assets/images/logo_evn.png'),
+                        ),
+                        SizedBox(height: 15,),
+                        Text("Trang Chủ",
+                            style: TextStyle(
+                              fontFamily: ".SF UI Display",
+                              color: Colors.white,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            )
+                        ),
+                        SizedBox(height: 15,),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25.0),
+                              border: Border.all(
+                                  color: Colors.blue,
+                                  width: 0.5
+                              )
+                          ),
+                          height: 170,
+                          width: 360,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 15,),
+                              Center(
+                                child: Text("Các chức năng chính",
+                                    style: TextStyle(
+                                      fontFamily: ".SF UI Display",
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    )
+                                ),
+                              ),
+                              SizedBox(height: 20,),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                      children: [
+                                        InkWell(
+                                          child: Icon(
+                                              Icons.list_alt_outlined,
+                                              color: Colors.deepOrangeAccent,
+                                              size: 60),
+                                          onTap: () {
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => DSThoaThuanKHPage()),
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Text("Danh Sách Thỏa Thuận",
+                                            style: TextStyle(
+                                              fontFamily: ".SF UI Display",
+                                              color: Colors.black,
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.w500,
+                                            )
+                                        )
+                                      ]
+                                  ),
+                                  SizedBox(width: 30,),
+                                  Column(
+                                    children: [
+                                      InkWell(
+                                        child: Icon(
+                                            Icons.assignment_rounded,
+                                            color: Colors.deepOrangeAccent,
+                                            size: 60),
+                                        onTap: () {
+                                          if (globalUserData.nHOMQUYEN == 3 || globalUserData.nHOMQUYEN == 2) {
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => DanhSachKHPhanBoDaDuyetPage()),
+                                            );
+                                          } else if (globalUserData.nHOMQUYEN == 1 || globalUserData.nHOMQUYEN == 16) {
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap4DaDuyetGDPage()),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(height: 5,),
+                                      Text("Danh Sách Phân Bổ Đã Duyệt",
+                                          overflow: TextOverflow.clip,
+                                          style: TextStyle(
+                                            fontFamily: ".SF UI Display",
+                                            color: Colors.black,
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w500,
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -180,13 +431,13 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,)),
             SizedBox(height: 5,),
-            Text('Mã khách hàng',
+            Text('',
                 style: TextStyle(
                   fontFamily: ".SF UI Display",
                   color: Colors.black,
                   fontSize: 20.0,
                   fontWeight: FontWeight.w400,)),
-            SizedBox(height: 30,),
+            SizedBox(height: 10,),
             Wrap(
               children: [
                 Column(
@@ -319,203 +570,13 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     ];
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        child: Container(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25.0),
-                    border: Border.all(
-                        color: Colors.grey,
-                        width: 2
-                    )
-                ),
-                height: 280,
-                child: DrawerHeader(
-                    decoration: BoxDecoration(color: Colors.white),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 5),
-                          Container(
-                            height: 60,
-                            width: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              image: DecorationImage(
-                                image: AssetImage("assets/images/profile.png"),
-                                fit: BoxFit.cover
-                              )
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          Text("${globalUserData.hOTEN}",
-                              style: TextStyle(
-                            fontFamily: ".SF UI Display",
-                            color: Colors.black,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w600,)),
-                          SizedBox(height: 5),
-                          Text("Mã Khách Hàng",
-                              style: TextStyle(
-                            fontFamily: ".SF UI Display",
-                            color: Colors.black,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w400,)),
-                          SizedBox(height: 15,),
-                          Wrap(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Wrap(
-                                    children: [
-                                      Icon(Icons.location_on, size: 18, color: Colors.redAccent,),
-                                      SizedBox(width: 10,),
-                                      Text('${globalUserData.dIACHI}',
-                                          style: TextStyle(
-                                            fontFamily: ".SF UI Display",
-                                            color: Colors.black,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w500,))
-                                    ],),
-                                  SizedBox(height: 5,),
-                                  Wrap(
-                                    children: [
-                                      Icon(Icons.phone, size: 18, color: Colors.redAccent,),
-                                      SizedBox(width: 10,),
-                                      Text('${globalUserData.sDT}',
-                                          style: TextStyle(
-                                            fontFamily: ".SF UI Display",
-                                            color: Colors.black,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w500,))
-                                    ],),
-                                  SizedBox(height: 5,),
-                                  Wrap(
-                                    children: [
-                                      Icon(Icons.mail, size: 18, color: Colors.redAccent,),
-                                      SizedBox(width: 10,),
-                                      Text('${globalUserData.eMAIL}',
-                                          style: TextStyle(
-                                            fontFamily: ".SF UI Display",
-                                            color: Colors.black,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w500,))
-                                    ],),
-                                ],
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                ),
-              ),
-              customerAcc ? Container() : new ListTile(
-                leading: Icon(Icons.list_alt_rounded, size: 30,),
-                title: Text("Quản Lý Thỏa Thuận Khách Hàng",
-                  style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,),),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QLThoaThuanKHPage()));
-                },
-              ),
-              (globalUserData.nHOMQUYEN == 2 || globalUserData.nHOMQUYEN == 3) ? new ListTile(
-                leading: Icon(Icons.list_alt_rounded, size: 30,),
-                title: Text("Quản Lý Kế Hoạch Phân Bổ",
-                  style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,),),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap3ChuaDuyetPage()));
-                },
-              ) : Container(),
-              (globalUserData.nHOMQUYEN == 1 || globalUserData.nHOMQUYEN == 16) ? new ListTile(
-                leading: Icon(Icons.list_alt_rounded, size: 30,),
-                title: Text("Quản Lý Kế Hoạch Phân Bổ Cấp 4",
-                  style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,),),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QLKHPhanBoCap4ChuaDuyetGDPage()));
-                },
-              ) : Container(),
-              (globalUserData.nHOMQUYEN == 0) ? new ListTile(
-                leading: Icon(Icons.edit_road_outlined, size: 30,),
-                title: Text("Khách Hàng Tự Phân Bổ Kế Hoạch",
-                  style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,),),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => KhachHangDKChiSoPage()));
-                },
-              ) : Container(),
-              ListTile(
-                  leading: Icon(Icons.support_agent, size: 30,),
-                  title: Text("Hỗ Trợ",
-                    style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,),),
-                  onTap: () async {
-                    launch('tel://$support_number');
-                    Navigator.pop(context);
-                  }
-              ),
-              ListTile(
-                  leading: Icon(Icons.edit, size: 30,),
-                  title: Text("Đổi Thông Tin Tài Khoản",
-                    style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,),),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PasswordChangePage()));
-                  }
-              ),
-              ListTile(
-                  leading: Icon(Icons.logout, size: 30,),
-                  title: Text("Đăng Xuất",
-                    style: TextStyle(
-                    fontFamily: ".SF UI Display",
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,),),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-                  }
-                  ),
-            ],
-          ),
-        ),
-      ),
-      appBar: AppBar(
-        title: Text("Hệ Thống Quản Lý Kế Hoạch Sử Dụng Điện"),
-        backgroundColor: Colors.deepOrangeAccent,
-      ),
+
+      // appBar: AppBar(
+      //   title: Text("Hệ Thống Quản Lý Kế Hoạch Sử Dụng Điện"),
+      //   backgroundColor: Colors.deepOrangeAccent.shade200,
+      //   elevation: 0,
+      // ),
       body: Container(
         color: Colors.white,
         height: height,
@@ -538,8 +599,8 @@ class _HomePageState extends State<HomePage> {
               label: "Trang Chủ",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.email),
-            label: "Thư Mời",
+            icon: Icon(Icons.person),
+            label: "Thông Tin Tài Khoản",
           ),
         ],
         currentIndex: _selectedIndex,

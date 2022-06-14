@@ -212,7 +212,7 @@ class _MyLoginPageState extends State<LoginPage> {
                             ],
                           ),
                           SizedBox(height: 20),
-                          Text("Phần mềm thuộc NPCIT",
+                          Text("© Phần mềm thuộc NPCIT",
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: ".SF UI Display",
