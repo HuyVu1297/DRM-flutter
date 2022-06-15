@@ -161,7 +161,7 @@ class _MyLoginPageState extends State<LoginPage> {
                           Row(
                             children: [
                               SizedBox(width: 20,),
-                              Text("Tài khoản khách Hàng",
+                              Text("Tài khoản khách hàng",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: ".SF UI Display",
